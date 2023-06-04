@@ -29,7 +29,7 @@ app.get('/show/:limit', (req,res) => {
     if(req.params['limit'] > 0) {limit = req.params['limit']}
     console.log(limit)
 
-    db.connection.execute("SELECT * FROM `notes_main` LIMIT " + limit + "ORDER BY `id` DESC", (err, results) => {
+    db.connection.execute("SELECT * FROM `notes_main` ORDER BY `id` DESC LIMIT " + limit, (err, results) => {
         res.json(results)
         console.log(results)
     })
