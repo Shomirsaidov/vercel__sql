@@ -1,14 +1,19 @@
 const express = require('express')
 const db = require('./connect.js')
-const cors = require('cors')
+
 
 const app = express()
 require('dotenv').config();
 const PORT = process.env.PORT
 
-app.use(cors({
-  origin: ['http://localhost:8080','https://kitob_demo.vercel.app','http://kitob_demo.vercel.app']
-}))
+// app.use(cors({
+//   origin: ['http://localhost:8080','https://kitob_demo.vercel.app','http://kitob_demo.vercel.app']
+// }))
+
+app.use('*', (req,res,next) => {
+    res.set('Access-Control-Allow-Origin','*')
+    next()
+})
 
 app.get('/create', (req,res) => {
 
